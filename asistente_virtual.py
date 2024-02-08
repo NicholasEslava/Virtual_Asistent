@@ -7,6 +7,7 @@ import pyjokes
 import webbrowser
 import datetime
 import wikipedia
+import AppKit
 
 
 
@@ -77,28 +78,31 @@ def transformar_audio_texto():
             return 'Sigo esperando'
         
 
-
-# el asistente pueda ser escuchado
 def hablar(mensaje):
- 
-    # encender motor
-    engine = pyttsx3.init()
- 
-    engine.setProperty('voice', id5)
- 
-    # pronunciar mensaje
-    engine.say(mensaje)
+    speech = AppKit.NSSpeechSynthesizer.alloc().init()
+    speech.startSpeakingString_(mensaje)
 
-    '''engine.runAndWait()''' # esta es la forma correcta de iniciar 
-    # el código pero por un problema interno no puedo usarlo en mi mac por
-    # lo que use la siguiente línea de codigo para que funcione
+# # el asistente pueda ser escuchado
+# def hablar(mensaje):
+ 
+#     # encender motor
+#     engine = pyttsx3.init()
+ 
+#     engine.setProperty('voice', id5)
+ 
+#     # pronunciar mensaje
+#     engine.say(mensaje)
+
+#     '''engine.runAndWait()''' # esta es la forma correcta de iniciar 
+#     # el código pero por un problema interno no puedo usarlo en mi mac por
+#     # lo que use la siguiente línea de codigo para que funcione
     
-    # iniciar ciclo de eventos sin bloquear el código
-    engine.startLoop(False)
+#     # iniciar ciclo de eventos sin bloquear el código
+#     engine.startLoop(False)
     
-    # esperar hasta que se termine de hablar
-    while engine.iterate():
-        pass
+#     # esperar hasta que se termine de hablar
+#     while engine.iterate():
+#         pass
     
 
 
@@ -244,6 +248,5 @@ def pedir_cosas():
             break
 
 
-
-
 pedir_cosas()
+
